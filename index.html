@@ -3,31 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Leo World - Personal website for Leo: gaming, PC build, projects, and contact links." />
-  <title>Leo World</title>
+  <meta name="description" content="LeoNardOo - personal website, gaming setup, social links, and classified private records." />
+  <title>LeoNardOo</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
     body {
       font-family: Arial, sans-serif;
-      background: #07070f;
+      background: #05050a;
       color: #ffffff;
-      line-height: 1.6;
+      line-height: 1.7;
+      overflow-x: hidden;
     }
 
-    header {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 30px;
-      background: radial-gradient(circle at top, #3320ff 0%, #07070f 45%, #000000 100%);
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(0, 217, 255, 0.22), transparent 35%),
+        radial-gradient(circle at 80% 10%, rgba(255, 0, 150, 0.18), transparent 32%),
+        radial-gradient(circle at 50% 90%, rgba(0, 255, 157, 0.12), transparent 35%);
+      z-index: -2;
+      animation: glowMove 10s ease-in-out infinite alternate;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 44px 44px;
+      z-index: -1;
+      mask-image: linear-gradient(to bottom, #000, transparent 85%);
+    }
+
+    @keyframes glowMove {
+      from { transform: scale(1) translateY(0); }
+      to { transform: scale(1.08) translateY(-18px); }
     }
 
     nav {
@@ -35,165 +48,209 @@
       top: 0;
       left: 0;
       width: 100%;
-      padding: 16px 10%;
-      background: rgba(7, 7, 15, 0.85);
-      backdrop-filter: blur(12px);
+      padding: 16px 9%;
+      background: rgba(5, 5, 10, 0.78);
+      backdrop-filter: blur(16px);
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 100;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.09);
     }
 
-    nav h2 {
-      color: #7df9ff;
-      letter-spacing: 1px;
+    nav h2 { color: #7df9ff; letter-spacing: 1px; }
+    nav a { color: #fff; text-decoration: none; margin-left: 20px; font-size: 15px; transition: .3s; }
+    nav a:hover { color: #7df9ff; }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 110px 24px 60px;
     }
 
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin-left: 22px;
-      font-size: 15px;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: #7df9ff;
+    .badge {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 9px 16px;
+      border: 1px solid rgba(125,249,255,.25);
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      color: #dffcff;
+      margin-bottom: 18px;
+      box-shadow: 0 0 30px rgba(125,249,255,.12);
     }
 
     .hero h1 {
-      font-size: clamp(44px, 8vw, 92px);
-      margin-bottom: 10px;
-      text-shadow: 0 0 25px rgba(125,249,255,0.45);
+      font-size: clamp(48px, 9vw, 112px);
+      line-height: 1;
+      margin-bottom: 16px;
+      text-shadow: 0 0 28px rgba(125,249,255,.42);
     }
 
-    .hero span {
-      color: #7df9ff;
-    }
+    .hero span { color: #7df9ff; }
+    .hero p { max-width: 780px; margin: 0 auto 28px; color: #d4d4e6; font-size: 20px; }
 
-    .hero p {
-      max-width: 720px;
-      margin: 0 auto 28px;
-      color: #d5d5e6;
-      font-size: 20px;
-    }
+    .buttons { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
 
     .btn {
+      border: none;
+      cursor: pointer;
       display: inline-block;
-      padding: 13px 28px;
+      padding: 13px 24px;
       border-radius: 999px;
       background: #7df9ff;
       color: #05050a;
       font-weight: bold;
       text-decoration: none;
-      box-shadow: 0 0 25px rgba(125,249,255,0.35);
-      transition: 0.3s;
+      box-shadow: 0 0 25px rgba(125,249,255,.3);
+      transition: .3s;
+      font-size: 15px;
     }
 
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 35px rgba(125,249,255,0.6);
-    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 0 36px rgba(125,249,255,.55); }
+    .btn.secondary { background: rgba(255,255,255,.08); color: #fff; border: 1px solid rgba(255,255,255,.16); }
+    .btn.lock { background: linear-gradient(90deg, #7df9ff, #ff4fd8); }
 
-    section {
-      padding: 90px 10%;
-    }
+    section { padding: 90px 9%; }
+    .title { font-size: 36px; margin-bottom: 22px; color: #7df9ff; }
+    .subtitle { color: #c9c9d8; margin-bottom: 24px; max-width: 760px; }
 
-    .title {
-      font-size: 36px;
-      margin-bottom: 24px;
-      color: #7df9ff;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 22px;
-    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(235px, 1fr)); gap: 20px; }
 
     .card {
-      background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 22px;
-      padding: 26px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+      background: linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,.035));
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 24px;
+      padding: 25px;
+      box-shadow: 0 22px 55px rgba(0,0,0,.25);
+      transition: .3s;
     }
 
-    .card h3 {
-      margin-bottom: 10px;
-      color: #ffffff;
-    }
+    .card:hover { transform: translateY(-5px); border-color: rgba(125,249,255,.3); }
+    .card h3 { margin-bottom: 10px; color: #fff; }
+    .card p, .card li { color: #cfcfe0; }
+    ul { list-style: none; }
+    li { margin: 7px 0; }
 
-    .card p, li {
-      color: #c9c9d8;
-    }
-
-    ul {
-      list-style: none;
-    }
-
-    li {
-      margin: 8px 0;
-    }
-
-    .contact a {
-      color: #7df9ff;
+    .socials a {
+      display: block;
+      color: #fff;
       text-decoration: none;
-      font-weight: bold;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.07);
+      margin: 10px 0;
+      transition: .3s;
+      border: 1px solid rgba(255,255,255,.09);
     }
+
+    .socials a:hover { background: rgba(125,249,255,.14); color: #7df9ff; }
+
+    .secret-box {
+      max-width: 780px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    input {
+      width: min(100%, 360px);
+      margin: 14px 0;
+      padding: 15px 18px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 16px;
+      background: rgba(0,0,0,.28);
+      color: #fff;
+      outline: none;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .error { color: #ff7b7b; margin-top: 10px; min-height: 26px; }
+
+    #classifiedContent {
+      display: none;
+      margin-top: 28px;
+      text-align: right;
+      direction: rtl;
+      animation: fadeIn .6s ease;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+    .access-granted {
+      color: #7dffbf;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+      text-align: center;
+      direction: ltr;
+    }
+
+    .classified-title {
+      text-align: center;
+      direction: ltr;
+      color: #ffdf7d;
+      margin-bottom: 18px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      padding-bottom: 14px;
+    }
+
+    .dossier p { margin-bottom: 16px; color: #eeeeff; }
 
     footer {
       text-align: center;
-      padding: 26px;
-      background: #030307;
-      color: #999;
-      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 28px;
+      background: rgba(0,0,0,.55);
+      color: #aaa;
+      border-top: 1px solid rgba(255,255,255,.08);
     }
 
     @media (max-width: 760px) {
-      nav {
-        padding: 14px 6%;
-      }
-
-      nav div {
-        display: none;
-      }
-
-      section {
-        padding: 70px 7%;
-      }
+      nav { padding: 14px 6%; }
+      nav div { display: none; }
+      section { padding: 70px 7%; }
+      .hero p { font-size: 17px; }
     }
   </style>
 </head>
 <body>
   <nav>
-    <h2>Leo World</h2>
+    <h2>LeoNardOo</h2>
     <div>
       <a href="#about">About</a>
-      <a href="#pc">My PC</a>
-      <a href="#gaming">Gaming</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+      <a href="#setup">My Setup</a>
+      <a href="#socials">Socials</a>
+      <a href="#classified">Classified</a>
     </div>
   </nav>
 
   <header>
     <div class="hero">
-      <h1>Hi, I'm <span>Leo</span></h1>
-      <p>I build, I play, I learn, and I never stop. Welcome to my personal world.</p>
-      <a class="btn" href="#about">Enter Leo World</a>
+      <div class="badge">🇪🇬 Egypt × Netherlands 🇳🇱</div>
+      <h1><span>Leo</span>NardOo</h1>
+      <p>Every story begins with a dream. Every achievement begins with a step.</p>
+      <div class="buttons">
+        <a class="btn" href="#socials">Socials</a>
+        <a class="btn secondary" href="#setup">My Setup</a>
+        <a class="btn lock" href="#classified">Classified Files 🔒</a>
+      </div>
     </div>
   </header>
 
   <section id="about">
-    <h2 class="title">About Me</h2>
-    <div class="card">
-      <p>I'm Leo, a student who loves gaming, technology, powerful PC builds, creative projects, and learning new things every day. This website is my personal space on the internet.</p>
+    <h2 class="title">About LeoNardOo</h2>
+    <p class="subtitle">A personal world for gaming, technology, ambition, style, and private records. Built with a dark neon identity inspired by power, focus, and future dreams.</p>
+    <div class="grid">
+      <div class="card"><h3>Identity</h3><p>LeoNardOo combines Egyptian spirit with Dutch inspiration in one personal digital space.</p></div>
+      <div class="card"><h3>Gaming</h3><p>High graphics, smooth FPS, cinematic worlds, racing games, horror stories, and open-world adventures.</p></div>
+      <div class="card"><h3>Ambition</h3><p>Learning, building, upgrading, and moving forward every day.</p></div>
     </div>
   </section>
 
-  <section id="pc">
+  <section id="setup">
     <h2 class="title">My PC Build</h2>
     <div class="grid">
       <div class="card"><h3>CPU</h3><p>AMD Ryzen 5 5600G</p></div>
@@ -205,32 +262,63 @@
     </div>
   </section>
 
-  <section id="gaming">
-    <h2 class="title">Gaming</h2>
-    <div class="grid">
-      <div class="card"><h3>Favorite Games</h3><p>Assassin's Creed, Forza, Need for Speed, Silent Hill, Resident Evil, and more.</p></div>
-      <div class="card"><h3>Gaming Style</h3><p>High graphics, smooth FPS, dark stories, open worlds, and cinematic adventures.</p></div>
+  <section id="socials">
+    <h2 class="title">Social Links</h2>
+    <div class="grid socials">
+      <div class="card">
+        <h3>Find Me</h3>
+        <a href="https://www.instagram.com/leo_12.9/" target="_blank">Instagram: leo_12.9</a>
+        <a href="https://www.snapchat.com/add/leo12.9" target="_blank">Snapchat: leo12.9</a>
+        <a href="https://wa.me/201146846608" target="_blank">WhatsApp: 01146846608</a>
+      </div>
+      <div class="card">
+        <h3>Biscory 🐱</h3>
+        <p>A special place for Biscory, Leo's cat, coming soon with photos and memories.</p>
+      </div>
     </div>
   </section>
 
-  <section id="projects">
-    <h2 class="title">Projects</h2>
-    <div class="grid">
-      <div class="card"><h3>NewGenStep</h3><p>An academy project for learning languages, programming, graphic design, freelancing, and trading basics.</p></div>
-      <div class="card"><h3>Clinic Management System</h3><p>A database and system analysis project with ERD, DFD, schema, and use cases.</p></div>
-    </div>
-  </section>
+  <section id="classified">
+    <h2 class="title">Classified Files</h2>
+    <div class="card secret-box">
+      <h3>Restricted Access</h3>
+      <p>Enter password to unlock LeoNardOo Private Records.</p>
+      <input id="passwordInput" type="password" placeholder="Enter access code" />
+      <br />
+      <button class="btn lock" onclick="unlockClassified()">Unlock</button>
+      <p class="error" id="errorMsg"></p>
 
-  <section id="contact" class="contact">
-    <h2 class="title">Contact</h2>
-    <div class="card">
-      <p>Email: <a href="mailto:ztaoztao8@gmail.com">ztaoztao8@gmail.com</a></p>
-      <p>Instagram / Snapchat: Add your links here</p>
+      <div id="classifiedContent" class="card dossier">
+        <h3 class="access-granted">ACCESS GRANTED</h3>
+        <h2 class="classified-title">LeoNardOo Private Records</h2>
+        <p><strong>السيد ليو</strong></p>
+        <p>يُعد السيد ليو من أبرز الكفاءات الشابة المرتبطة بالسفارة الهولندية، حيث سُجِّل كأصغر سفير في تاريخها. ويتولى حاليًا قيادة وإدارة قسم الشباب، مساهمًا في تطوير المبادرات والبرامج الهادفة إلى دعم وتمكين الأجيال الجديدة.</p>
+        <p>وخلال مسيرته، حقق العديد من الإنجازات التي انعكست إيجابًا على بيئة العمل والأهداف المشتركة، كما عُرف بقدرته على تحمل المسؤولية وإدارة المهام بكفاءة عالية.</p>
+        <p>وقبل تقلده مناصبه القيادية، عمل ضمن فرق متخصصة ونفّذ عددًا من المهام بنجاح ملحوظ، الأمر الذي أهّله لقيادة <strong>فريق Alpha 13</strong>، حيث أظهر مهارات استثنائية في القيادة والتنظيم واتخاذ القرار.</p>
+        <p>ولا تزال مساهماته المستمرة تمثل نموذجًا للشباب الطموح الساعي إلى تحقيق أثر إيجابي وبناء مستقبل أكثر تطورًا وابتكارًا.</p>
+      </div>
     </div>
   </section>
 
   <footer>
-    <p>© 2026 Leo World. Built with passion.</p>
+    <p>© 2026 LeoNardOo. Egypt 🇪🇬 × Netherlands 🇳🇱</p>
   </footer>
+
+  <script>
+    function unlockClassified() {
+      const pass = document.getElementById('passwordInput').value;
+      const error = document.getElementById('errorMsg');
+      const content = document.getElementById('classifiedContent');
+
+      if (pass === '129249') {
+        error.textContent = '';
+        content.style.display = 'block';
+        content.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        content.style.display = 'none';
+        error.textContent = 'Access denied. Wrong password.';
+      }
+    }
+  </script>
 </body>
 </html>
